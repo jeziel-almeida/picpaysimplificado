@@ -17,7 +17,7 @@ public class UserService {
 // Classe onde é implementada as regras de negócio
     
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     public void validateTransaction(User sender, BigDecimal amount) throws TransactionNotAllowed, InsufficientBalance {
         
@@ -31,10 +31,10 @@ public class UserService {
     }
 
     public User findUserById(Long id) throws RecordNotFoundException {
-        return repository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
+        return userRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public void saveUser(User user) {
-        repository.save(user);
+        userRepository.save(user);
     }
 }
