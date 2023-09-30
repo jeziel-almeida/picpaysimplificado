@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.picpaysimplificado.domain.user.User;
 import com.picpaysimplificado.domain.user.UserType;
-import com.picpaysimplificado.exception.InsufficientBalance;
+import com.picpaysimplificado.exception.InsufficientBalanceException;
 import com.picpaysimplificado.exception.RecordNotFoundException;
-import com.picpaysimplificado.exception.TransactionNotAllowed;
+import com.picpaysimplificado.exception.TransactionNotAllowedException;
 import com.picpaysimplificado.repository.UserRepository;
 
 @Service
@@ -19,14 +19,14 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void validateTransaction(User sender, BigDecimal amount) throws TransactionNotAllowed, InsufficientBalance {
+    public void validateTransaction(User sender, BigDecimal amount) throws TransactionNotAllowedException, InsufficientBalanceException {
         
         if(sender.getUserType() == UserType.MERCHANT) {
-            throw new TransactionNotAllowed(UserType.MERCHANT);
+            throw new TransactionNotAllowedException(UserType.MERCHANT);
         }
 
         if(sender.getBalance().compareTo(amount) < 0) { //if balance is less than amount
-            throw new InsufficientBalance();
+            throw new InsufficientBalanceException();
         }
     }
 
