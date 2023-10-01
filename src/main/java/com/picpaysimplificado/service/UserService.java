@@ -9,7 +9,7 @@ import com.picpaysimplificado.domain.user.User;
 import com.picpaysimplificado.domain.user.UserType;
 import com.picpaysimplificado.exception.InsufficientBalanceException;
 import com.picpaysimplificado.exception.RecordNotFoundException;
-import com.picpaysimplificado.exception.TransactionNotAllowedException;
+import com.picpaysimplificado.exception.UserNotAllowedException;
 import com.picpaysimplificado.repository.UserRepository;
 
 @Service
@@ -19,10 +19,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void validateTransaction(User sender, BigDecimal amount) throws TransactionNotAllowedException, InsufficientBalanceException {
+    public void validateTransaction(User sender, BigDecimal amount) throws InsufficientBalanceException, UserNotAllowedException {
         
         if(sender.getUserType() == UserType.MERCHANT) {
-            throw new TransactionNotAllowedException(UserType.MERCHANT);
+            throw new UserNotAllowedException(UserType.MERCHANT);
         }
 
         if(sender.getBalance().compareTo(amount) < 0) { //if balance is less than amount
