@@ -1,6 +1,6 @@
 package com.picpaysimplificado.exception;
 
-public class TransactionNotAllowedException extends Exception {
+public class TransactionNotAllowedException extends RuntimeException {
     
     private static final long serialVersionUID = 1L;
 
