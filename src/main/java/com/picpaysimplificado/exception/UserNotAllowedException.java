@@ -2,7 +2,7 @@ package com.picpaysimplificado.exception;
 
 import com.picpaysimplificado.domain.user.UserType;
 
-public class UserNotAllowedException extends Exception {
+public class UserNotAllowedException extends RuntimeException {
     
     private static final long serialVersionUID = 1L;
 
