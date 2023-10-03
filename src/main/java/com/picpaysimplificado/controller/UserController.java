@@ -15,6 +15,8 @@ import com.picpaysimplificado.domain.user.User;
 import com.picpaysimplificado.dto.UserDTO;
 import com.picpaysimplificado.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController()
 @RequestMapping("/api/users")
 public class UserController {
@@ -24,7 +26,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public User createUser(@RequestBody UserDTO user) {
+    public User createUser(@RequestBody @Valid UserDTO user) {
         return userService.createUser(user);
     }
 
