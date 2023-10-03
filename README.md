@@ -12,3 +12,15 @@ Este repositório contém um projeto Java Spring de um [desafio de código](http
 * [H2](https://www.h2database.com/)
 
 O projeto foi baseado no tutorial do canal [Fernanda Kipper | Dev](https://youtu.be/QXunBiLq2SM).
+
+### Payload
+
+POST api/transactions
+
+```json
+{
+    "value" : 100.00,
+    "sender" : 4,
+    "receiver" : 15
+}
+```
