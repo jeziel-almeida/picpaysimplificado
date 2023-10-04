@@ -28,7 +28,7 @@ public class ApplicationControllerAdvice {
     }
 
     @ExceptionHandler(InsufficientBalanceException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.PRECONDITION_FAILED)
     public String handleInsufficientBalanceException(InsufficientBalanceException ex) {
         return ex.getMessage();
     }
@@ -46,7 +46,7 @@ public class ApplicationControllerAdvice {
     }
 
     @ExceptionHandler(UserNotAllowedException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.PRECONDITION_FAILED)
     public String handleUserNotAllowedException(UserNotAllowedException ex) {
         return ex.getMessage();
     }
