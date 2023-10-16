@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.picpaysimplificado.domain.user.User;
 import com.picpaysimplificado.domain.user.UserType;
 import com.picpaysimplificado.dto.UserDTO;
-import com.picpaysimplificado.dto.mapper.UserMapper;
 import com.picpaysimplificado.exception.InsufficientBalanceException;
 import com.picpaysimplificado.exception.RecordNotFoundException;
 import com.picpaysimplificado.exception.UserNotAllowedException;
@@ -21,9 +20,6 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
-    
-    @Autowired
-    private UserMapper userMapper;
 
     public void validateTransaction(User sender, BigDecimal amount) {
         
@@ -41,7 +37,8 @@ public class UserService {
     }
 
     public User createUser(UserDTO user) {
-        return userRepository.save(userMapper.toEntity(user));
+        User newUser = new User(user);
+        return userRepository.save(newUser);
     }
 
     public List<User> getAll() {

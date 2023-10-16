@@ -11,7 +11,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record UserDTO(
-    Long id,
     @NotNull @NotBlank String firstName,
     @NotNull @NotBlank String lastName,
     @NotBlank @Length(min = 11, max = 20) String document,
